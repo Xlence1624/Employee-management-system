@@ -31,7 +31,7 @@ const App = () => {
           <Route path="/settings" element={<Settings />} />
         </Route>
         <Route path="/print/payslips/:id" element={<Printpayslip />} />
-        <Route path="*" element={<Navigate to="/dashboard" replace />} />
+        <Route path="*" element={<Navigate to="/login" replace />} />
       </Routes>
     </BrowserRouter>
   );
