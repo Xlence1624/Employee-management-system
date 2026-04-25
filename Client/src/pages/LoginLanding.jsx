@@ -4,6 +4,7 @@ import { ArrowRightIcon, ShieldIcon, UserIcon } from 'lucide-react'
 import { Link, Links } from 'react-router-dom'
 
 
+
 const LoginLanding = () => {
   const PortalOptions = [
 
@@ -45,6 +46,13 @@ const LoginLanding = () => {
 
       ))}
 
+     </div>
+
+     {/* Footer */}
+     <div className='mt-12 text-center md:text-left text-sm text-slate-400'>
+      <p> 
+       © {new Date().getFullYear()} Employee Management System. All rights reserved.
+      </p>
      </div>
 
     </div>
