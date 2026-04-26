@@ -9,19 +9,19 @@ const EmployeeDashboard = ({data}) => {
   const cards = [
     {
       icon: CalendarIcon,
-      valie: data.currentMonthAttendance,
+      value: data.currentMonthAttendance,
       title: "Days Present",
       subtitle: "This month",
     },
     {
       icon: FileTextIcon,
-      valie: data.pendingLeaves,
+      value: data.pendingLeaves,
       title: "Pending Leaves",
       subtitle: "Awaiting approval",
     },
     {
       icon: DollarSignIcon,
-      valie: data.latestPayslip
+      value: data.latestPayslip
         ? `$${data.latestPayslip.netSalary?.toLocaleString()}`
         : "N/A",
       title: "Latest Payslip",
@@ -31,10 +31,28 @@ const EmployeeDashboard = ({data}) => {
   return (
     <div className="animate-fade-in">
       <div className="page-header">
-        <h1 className="page-title">Welcome, {emp?.firstName}</h1>
+        <h1 className="page-title ">Welcome, {emp?.firstName}</h1>
         <p className="page-subtitle">
           {emp?.position} - {emp?.department || "No Department"}
         </p>
+      </div>
+
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-5 mb-8">
+{cards.map(
+  (card, index) => (
+    <div key={index} className="card card-hover p-5  sm:p-6 relative overflow-hidden group flex items-center justify-between ">
+<div>
+  <div className="absolute left-0 top-0 bottom-0 w-1 rounded-full bg-slate-500/70 group-hover:bg-indigo-500/70 "/>
+</div>
+<card.icon className="size-10 p-2.5 rounded-lg bg-slate-100 text-slate-600 group-hover:bg-indigo-50 group-hover:text-indigo-600 transition-colors duration-200 absolute left-[10%]"/>
+<p className="text-sm font-medium text-slate-700 absolute left-[30%] ">{card.title}</p>
+
+<p className="text-xl md:text-xl font-bold text-slate-900 mt-1  absolute right-3">{card.value}</p>
+
+
+    </div>
+  )
+)}
       </div>
     </div>
   );

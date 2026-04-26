@@ -15,8 +15,8 @@ export const dummyEmployeeDashboardData = {
         netSalary: 2000,
     },
     employee: {
-        firstName: "John",
-        lastName: "Doe",
+        firstName: "Michael",
+        lastName: "Benjamin",
         position: "Software Engineer",
         department: "Engineering",
     },
@@ -24,9 +24,9 @@ export const dummyEmployeeDashboardData = {
 
 export const dummyProfileData = {
     _id: "69b411e6f8a807df391d7b13",
-    firstName: "John",
-    lastName: "Doe",
-    email: "johndoe@example.com",
+    firstName: "Michael",
+    lastName: "Benjamin",
+    email: "michaelbenjamin@example.com",
     image: null,
 };
 
@@ -35,7 +35,7 @@ export const dummyEmployeeData = [
         _id: "69b414a7f8a807df391d7b58",
         userId: {
             _id: "69b414a7f8a807df391d7b56",
-            email: "david@example.com",
+            email: "michaelbenjamin@example.com",
             role: "EMPLOYEE",
         },
         department: "IT Support",
