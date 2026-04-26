@@ -8,6 +8,7 @@ import {
   DollarSignIcon,
   FileTextIcon,
   LayoutGridIcon,
+  LogOutIcon,
   MenuIcon,
   SettingsIcon,
   UserIcon,
@@ -71,6 +72,10 @@ const Sidebar = () => {
       icon: SettingsIcon,
     },
   ];
+
+    const handleLogout = () => {
+      window.location.href = "/login";
+    }
   const sideBarContent = (
     <>
       {/* Brand Header */}
@@ -150,6 +155,14 @@ const Sidebar = () => {
         })}
       </div>
       {/* logout */}
+
+<div className="p-3 border-t border-white/6">
+<button className="flex items-center gap-3 w-full px-3 p-2.5 rounded-md text-[13px] font-medium text-slate-400 hover:text-rose-400 hover:bg-rose-500/8 transition-all duration-150" onClick={handleLogout}>
+  <LogOutIcon className="w-[17px]  h-[17px]"/>
+  <span>Logout</span>
+</button>
+</div>
+
     </>
   );
   return (
