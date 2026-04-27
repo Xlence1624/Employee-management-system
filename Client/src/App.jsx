@@ -1,6 +1,6 @@
 import React from "react";
 import { Route } from "react-router-dom";
-import Dashboard from "./pages/dashboard";
+import Dashboard from "./pages/Dashboard";
 import Attendance from "./pages/Attendance";
 import Employees from "./pages/Employees";
 import Leave from "./pages/Leave";
