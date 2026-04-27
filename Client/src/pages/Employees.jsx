@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useCallback } from 'react'
 import { dummyEmployeeData, DEPARTMENTS } from '../assets/assets'
 import { Plus, Search } from 'lucide-react'
+import EmployeeCard from '../components/EmployeeCard'
 
 const Employees = () => {
 
@@ -70,7 +71,7 @@ async () => {
   <p className='col-span-full text-center py-16 text-slate-400 bg-white rounded-2xl border  border-dashed border-slate-200'>  No employee found</p> 
 )  : ( 
 filtered.map(
-  (emp)=> (<p key={emp.id}>{emp.firstName}</p>)
+  (emp)=> <EmployeeCard key={emp.id} employee={emp} onDelete={fetchEmployees} onEdit={}/>
 )
 
 )}
