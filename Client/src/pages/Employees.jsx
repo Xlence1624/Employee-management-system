@@ -65,7 +65,7 @@ const Employees = () => {
         </div>
         <select
           value={selectedDept}
-          onChange={(e) => setSelectedDept(e.targetvalue)}
+          onChange={(e) => setSelectedDept(e.target.value)}
           className="max-w-40"
         >
           <option value="">All Departments</option>
@@ -139,7 +139,7 @@ const Employees = () => {
       {editEmployee && (
         <div
           className="fixed inset-0 z-50 flex items-start justify-center p-4 overflow-y-auto bg-black/40 backdrop-blur-sm"
-          onClick={setEditEmployee(null)}
+          onClick={() => setEditEmployee(null)}
         >
           <div
             className="relative bg-white rounded-2xl shadow-2xl w-full max-w-3xl my-8 animate-fade-in"
