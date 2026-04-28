@@ -32,18 +32,18 @@ export const dummyProfileData = {
 
 export const dummyEmployeeData = [
     {
-        _id: "69b414a7f8a807df391d7b58",
+        _id: "69b414a7f8a807df391d7b584",
         userId: {
-            _id: "69b414a7f8a807df391d7b56",
+            _id: "69b414a7f8a807df391d7b564",
             email: "michaelbenjamin@example.com",
             role: "EMPLOYEE",
         },
-        department: "IT Support",
+        department: "Management",
         firstName: "Orji",
         lastName: "Michael",
         email: "david@example.com",
         phone: "9000000001",
-        position: "Associate Business Support",
+        position: "Chief Techinical Officer",
         basicSalary: 1000,
         allowances: 100,
         deductions: 9.98,
@@ -54,16 +54,16 @@ export const dummyEmployeeData = [
         bio: "",
         createdAt: "2026-03-13T13:44:07.806Z",
         updatedAt: "2026-03-13T13:44:07.806Z",
-        id: "69b414a7f8a807df391d7b58",
+        id: "69b414a7f8a807df391d7b584",
         user: {
             email: "david@example.com",
             role: "EMPLOYEE",
         },
     },
     {
-        _id: "69b41439f8a807df391d7b52",
+        _id: "69b41439f8a807df391d7b523",
         userId: {
-            _id: "69b41439f8a807df391d7b50",
+            _id: "69b41439f8a807df391d7b503",
             email: "alex@example.com",
             role: "EMPLOYEE",
         },
@@ -83,16 +83,16 @@ export const dummyEmployeeData = [
         bio: "",
         createdAt: "2026-03-13T13:42:17.589Z",
         updatedAt: "2026-03-13T13:42:17.589Z",
-        id: "69b41439f8a807df391d7b52",
+        id: "69b41439f8a807df391d7b523",
         user: {
             email: "alex@example.com",
             role: "EMPLOYEE",
         },
     },
     {
-        _id: "69b411e6f8a807df391d7b13",
+        _id: "69b411e6f8a807df391d7b132",
         userId: {
-            _id: "69b411e5f8a807df391d7b11",
+            _id: "69b411e5f8a807df391d7b112",
             email: "johndoe@example.com",
             role: "EMPLOYEE",
         },
@@ -112,7 +112,7 @@ export const dummyEmployeeData = [
         bio: "Hi, I am dev a full stack web developer",
         createdAt: "2026-03-13T13:32:22.013Z",
         updatedAt: "2026-03-13T13:33:20.498Z",
-        id: "69b411e6f8a807df391d7b13",
+        id: "69b411e6f8a807df391d7b132",
         user: {
             email: "johndoe@example.com",
             role: "EMPLOYEE",
@@ -120,14 +120,14 @@ export const dummyEmployeeData = [
     },
 
      {
-        _id: "69b411e6f8a807df391d7b13",
+        _id: "69b411e6f8a807df391d7b131",
         userId: {
-            _id: "69b411e5f8a807df391d7b11",
+            _id: "69b411e5f8a807df391d7b111",
             email: "johndoe@example.com",
             role: "EMPLOYEE",
         },
         department: "Engineering",
-        firstName: "Thinkerbell",
+        firstName: "Thinkerbel",
         lastName: "Daphane",
         email: "johndoe@example.com",
         phone: "9000000001",
