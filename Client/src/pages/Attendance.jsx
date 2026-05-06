@@ -1,8 +1,36 @@
 import React from 'react'
+import { useState, useCallback, useEffect } from 'react'
+import Loading from '../components/Loading'
+import { dummyAttendanceData } from '../assets/assets'
 
 const Attendance = () => {
+  const [history, setHistory] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [isDeleted, setIsDeleted] = useState(false);
+  const fetchData = useCallback( async () => {
+    setHistory(dummyAttendanceData);
+    setTimeout(() => {
+      setLoading(false);
+    }, 1000);
+  }, [])
+
+  useEffect(() => {
+    fetchData();
+  }, [fetchData])
+
+  if (loading) return <Loading />
+
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  const todayRecord = history.find((r)=> new Date(r.date).toDateString() === today.toDateString())
   return (
-    <div>Attendance</div>
+    <div className="animate-fade-in">
+<div className="page-header">
+  <h1 className="page-title">Attendance</h1>
+  <p className="page-subtitle">Track your work hours and daily check-ins</p>
+</div>
+
+    </div>
   )
 }
 
