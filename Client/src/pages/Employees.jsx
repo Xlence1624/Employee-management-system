@@ -3,6 +3,7 @@ import { useCallback } from "react";
 import { dummyEmployeeData, DEPARTMENTS } from "../assets/assets";
 import { CrossIcon, Plus, Search, X } from "lucide-react";
 import EmployeeCard from "../components/EmployeeCard";
+import EmployeeForm from "../components/EmployeeForm";
 
 const Employees = () => {
   const [employees, setEmployees] = useState([]);
@@ -37,8 +38,8 @@ const Employees = () => {
       {/* Header */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
         <div>
-          <h1 className="page-title">Employees</h1>
-          <p className="page-subtitle">Manage your team membebrs</p>
+          <h1 className="page-title sm:ml-8 sm:mt-[-5px]  lg:m-0">Employees</h1>
+          <p className=" page-subtitle ">Manage your team membebrs</p>
         </div>
         <button
           className="btn-primary flex items-center gap-2 w-full sm:w-auto justify-center"
@@ -65,7 +66,7 @@ const Employees = () => {
         </div>
         <select
           value={selectedDept}
-          onChange={(e) => setSelectedDept(e.targetvalue)}
+          onChange={(e) => setSelectedDept(e.target.value)}
           className="max-w-40"
         >
           <option value="">All Departments</option>
@@ -129,7 +130,16 @@ const Employees = () => {
               </button>
             </div>
 
-            <div className="p-6">form</div>
+            <div className="p-6">
+
+    <EmployeeForm   onSuccess={() => {
+                showCreateModel(faalse);
+                fetchEmployees();
+              }}
+              onCancel={() => setShowCreateModel(false)}
+              />
+
+            </div>
           </div>
         </div>
       )}
@@ -139,7 +149,7 @@ const Employees = () => {
       {editEmployee && (
         <div
           className="fixed inset-0 z-50 flex items-start justify-center p-4 overflow-y-auto bg-black/40 backdrop-blur-sm"
-          onClick={setEditEmployee(null)}
+          onClick={() => setEditEmployee(null)}
         >
           <div
             className="relative bg-white rounded-2xl shadow-2xl w-full max-w-3xl my-8 animate-fade-in"
@@ -162,7 +172,14 @@ const Employees = () => {
               </button>
             </div>
 
-            <div className="p-6">form</div>
+            <div className="p-6">
+              <EmployeeForm   initialData={editEmployee} onSuccess={() => {
+                setEditEmployee(null);
+                fetchEmployees();
+              }}
+              onCancel={() => setEditEmployee(null)}
+              />
+            </div>
           </div>
         </div>
       )}

@@ -46,7 +46,7 @@ export const dummyEmployeeData = [
         position: "Chief Techinical Officer",
         basicSalary: 1000,
         allowances: 100,
-        deductions: 9.98,
+        deductions: 9.99,
         employmentStatus: "ACTIVE",
         joinDate: "2000-01-20T00:00:00.000Z",
         image: null,
