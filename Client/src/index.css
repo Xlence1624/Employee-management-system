@@ -76,7 +76,7 @@
         @apply text-2xl font-medium text-slate-900 tracking-tight;
     }
     .page-subtitle {
-        @apply text-slate-500 text-sm mt-1;
+        @apply text-slate-500 text-sm mt-1 sm:mt-3;
     }
 
     /* Animations */
