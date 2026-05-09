@@ -34,7 +34,7 @@ const Sidebar = () => {
     setMobileMenuOpen(false);
   }, [pathname]);
 
-  const role = "ADMIN" || "Employee";
+  const role = "" || "Employee";
 
   const navItems = [
     {
@@ -143,10 +143,10 @@ const Sidebar = () => {
 
               {/* The line that indicates active route */}
               {isActive && (
-                <div className="absolute left-0 top-1/2 -translate-y-1/2 w-[3px] h-full rounded-r-full bg-indigo-400 "></div>
+                <div className="absolute left-0 top-1/2 -translate-y-1/2 w-0.75 h-full rounded-r-full bg-indigo-400 "></div>
               )}
               <options.icon
-                className={`w-[17px] h-[17px] shrink-0 ml-2 ${isActive ? "text-indigo-300" : "text-slate-400 group-hover:text-slate-300"}`}
+                className={`w-4.25 h-4.25 shrink-0 ml-2 ${isActive ? "text-indigo-300" : "text-slate-400 group-hover:text-slate-300"}`}
               />
               <span className="flex-1">{options.name}</span>
               {isActive && <ChevronRightIcon className="w-3.5 h-3.5 text-indigo-500/50"/>}
@@ -158,7 +158,7 @@ const Sidebar = () => {
 
 <div className="p-3 border-t border-white/6">
 <button className="flex items-center gap-3 w-full px-3 p-2.5 rounded-md text-[13px] font-medium text-slate-400 hover:text-rose-400 hover:bg-rose-500/8 transition-all duration-150" onClick={handleLogout}>
-  <LogOutIcon className="w-[17px]  h-[17px]"/>
+  <LogOutIcon className="w-4.25  h-4.25"/>
   <span>Logout</span>
 </button>
 </div>
