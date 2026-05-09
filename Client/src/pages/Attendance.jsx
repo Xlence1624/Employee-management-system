@@ -2,6 +2,9 @@ import React from 'react'
 import { useState, useCallback, useEffect } from 'react'
 import Loading from '../components/Loading'
 import { dummyAttendanceData } from '../assets/assets'
+import CheckinButton from '../components/attendance/CheckinButton'
+import AttendanceStats from '../components/attendance/AttendanceStats'
+import AttendanceHistory from '../components/attendance/AttendanceHistory'
 
 const Attendance = () => {
   const [history, setHistory] = useState([]);
@@ -34,10 +37,11 @@ const Attendance = () => {
   <p className="text-rose-600">You can no longer clock in or out because your employee records have been deleted.</p>
 </div>) : (
   <div className="mb-8"> 
-  Check in button
+  <CheckinButton todayRecord={todayRecord} onAction={fetchData}/>
    </div>
 )}
-
+<AttendanceStats history={history}/>
+<AttendanceHistory history={history}/>
     </div>
   )
 }
