@@ -4,13 +4,14 @@ import { useState, useEffect, useCallback } from 'react'
 import Loading from '../components/Loading'
 
 import { PlusIcon, PalmtreeIcon, ThermometerIcon, UmbrellaIcon  } from 'lucide-react'
+import LeaveHistory from '../components/leave/LeaveHistory'
 
 const Leave = () => {
   const [leaves, setLeaves] = useState([])
   const [loading, setLoading] = useState(true)
   const [showModal, setShowModal] = useState(false)
   const [isDeleted, setIsDeleted] = useState(false)
-  const isAdmin  = false
+  const isAdmin  = false;
 
   const fetchLeaves = useCallback(
     () => {
@@ -47,8 +48,8 @@ const Leave = () => {
 
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 gap-4">
 <div className="">
-  <h1 className="">Leave Management</h1>
-  <p className="">{isAdmin? "Manage leaves applications" : "Your leave history and requests"}</p>
+  <h1 className="page-title">Leave Management</h1>
+  <p className="page-subtitle">{isAdmin? "Manage leaves applications" : "Your leave history and requests"}</p>
 </div>
 
 {!isAdmin && !isDeleted && (
@@ -88,7 +89,7 @@ const Leave = () => {
  }
   
   
-
+<LeaveHistory leaves={leaves} isAdmin={isAdmin} onUpdate={fetchLeaves}/>
 
 
     </div>
