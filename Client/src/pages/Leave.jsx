@@ -5,13 +5,14 @@ import Loading from '../components/Loading'
 
 import { PlusIcon, PalmtreeIcon, ThermometerIcon, UmbrellaIcon  } from 'lucide-react'
 import LeaveHistory from '../components/leave/LeaveHistory'
+import ApplyLeaveModal from '../components/leave/ApplyLeaveModal'
 
 const Leave = () => {
   const [leaves, setLeaves] = useState([])
   const [loading, setLoading] = useState(true)
   const [showModal, setShowModal] = useState(false)
   const [isDeleted, setIsDeleted] = useState(false)
-  const isAdmin  = false;
+  const isAdmin  = true;
 
   const fetchLeaves = useCallback(
     () => {
@@ -91,7 +92,7 @@ const Leave = () => {
   
 <LeaveHistory leaves={leaves} isAdmin={isAdmin} onUpdate={fetchLeaves}/>
 
-
+<ApplyLeaveModal open={showModal} onClose={() => setShowModal(false)} onSuccess={fetchLeaves}/>
     </div>
   )
 }
