@@ -2,6 +2,8 @@ import React from 'react'
 import { dummyEmployeeData, dummyPayslipData } from '../assets/assets'
 import { useState, useEffect, useCallback } from 'react'
 import Loading from '../components/Loading';
+import PayslipList from '../components/payslip/PayslipList';
+import GeneratePayslipForm from '../components/payslip/GeneratePayslipForm';
 
 const Payslips = () => {
   const [payslips, setPayslips] = useState([]);
@@ -45,11 +47,11 @@ if (loading) return <Loading/>
   </p>
 </div>
 
-{isAdmin && <p>Generate Form</p>}
+{isAdmin && <GeneratePayslipForm employee={employee} onsuccess={fetchPayslips} />}
 
 </div>
 
-<p className="page-description">Payslip list</p>
+<PayslipList payslips={payslips} isAdmin={isAdmin} />
 
 
     </div>
