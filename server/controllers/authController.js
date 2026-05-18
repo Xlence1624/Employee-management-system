@@ -59,5 +59,26 @@ export const session = (req, res) => {
   //POST/api/auth/change-password
 
   export const changePassword = async (req, res) => {
+try {
+  const session = req.session
+  const { currentPasword, newPassword } = req.body;
+  if(!currentPasword || !newPassword){
+return res.status(400).json({error: "both passwords are required"})
+  }
 
+  const user = await User.findById(session.userId)
+  if(!user) return res.status(404).json({error: "User not found"})
+
+    const isValid = await bcrypt.compare(currentPasword, user.password)
+    if(!isValid){
+      return res.status(400).json({error: "Current password is incorrect"})
+      const hashed = await bcrypt.hash(newPassword, 10);
+      await User.findByIdAndUpdate(session.userId, {password: hashed})
+
+    }
+
+    return res.json({success: true})
+} catch (error) {
+  return res.status(500).json({error: "Failed to change the password"})
+}
   }
