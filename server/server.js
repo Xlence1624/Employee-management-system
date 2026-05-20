@@ -4,6 +4,9 @@ import multer from 'multer';
 import connectDb from './config/db.js';
 
 import "dotenv/config";
+import authRouter from './routes/authRoutes.js';
+import employeeRouter from './routes/EmployeeRoutes.js';
+import profileRouter from './routes/profileRoutes.js';
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -17,6 +20,10 @@ app.use(multer().none());
 app.get('/', (req, res) => {
   res.send('Backend development commenced!');
 });
+app.use("/api/auth", authRouter)
+app.use("/api/employees", employeeRouter)
+app.use("/api/profile", profileRouter)
+
 await connectDb();
 // start server
 app.listen(PORT, () => {
