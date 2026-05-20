@@ -7,6 +7,7 @@ import "dotenv/config";
 import authRouter from './routes/authRoutes.js';
 import employeeRouter from './routes/EmployeeRoutes.js';
 import profileRouter from './routes/profileRoutes.js';
+import attendanceRouter from './routes/attendanceRoutes.js';
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -23,6 +24,7 @@ app.get('/', (req, res) => {
 app.use("/api/auth", authRouter)
 app.use("/api/employees", employeeRouter)
 app.use("/api/profile", profileRouter)
+app.use("/api/attendance", attendanceRouter)
 
 await connectDb();
 // start server
