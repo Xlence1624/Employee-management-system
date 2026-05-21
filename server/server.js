@@ -2,6 +2,8 @@ import express from 'express';
 import cors from 'cors';
 import multer from 'multer';
 import connectDb from './config/db.js';
+import { serve } from "inngest/express";
+import { inngest, functions } from "./inngest/index.js"
 
 import "dotenv/config";
 import authRouter from './routes/authRoutes.js';
@@ -31,7 +33,7 @@ app.use("/api/attendance", attendanceRouter)
 app.use("/api/leave", leaveRouter)
 app.use("/api/payslips", payslipRouter)
 app.use("/api/dashboard", dashboardRouter)
-
+app.use("/api/inngest", serve({ client: inngest, functions }));
 await connectDb();
 // start server
 app.listen(PORT, () => {
