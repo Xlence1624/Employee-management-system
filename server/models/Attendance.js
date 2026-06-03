@@ -24,13 +24,13 @@ type: Date, default: null
     type: Number, default: null
   },
   dayType: {
-    type: String, enum: ["Full day", "Three quater day", "Half Day", "Short Day", null], default: null
+    type: String, enum: ["Full day", "Three quater day", "Half Day", "Short Day"], default: null
   }
   
 } , { timestamps: true });
 
 attendanceSchema.index({employeeId: 1, date: 1}, {unique: true})
 
-const Attendance = mongoose.models.User || mongoose.model('Attendance', userSchema);
+const Attendance = mongoose.models.User || mongoose.model('Attendance', attendanceSchema);
 
 export default Attendance;

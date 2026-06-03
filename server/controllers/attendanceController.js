@@ -1,4 +1,7 @@
 //clock in and out for employee
+
+import { Inngest } from "inngest";
+
 // POST /api/attendance
 export const clockInOut = async (req, res)=> {
 try {
@@ -21,6 +24,14 @@ try {
       date: today,
       checkIn: now,
       status: isLate ? "LATE" : "PRESENT"
+    })
+    await inngest.send({
+      name: "employee/checkout",
+      data: {
+        employeeId: employee._id,
+        attendanceId: attendance._id,
+      
+      }
     })
     return res.json({success: true, type: "CHECK_IN", 
       data: attendance

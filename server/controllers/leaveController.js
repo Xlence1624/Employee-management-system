@@ -2,6 +2,7 @@
 
 import Employee from "../models/Employee.js";
 import leaveApplication from "../models/LeaveApplication.js";
+import { inngest } from "../inngest/index.js";
 
 //Create leave
 //POST/api/leave
@@ -33,6 +34,15 @@ if (new Date(startDate) <= today || new Date(endDate) <= today){
   const leave = await leaveApplication.create({employeeId: employee._id, type, startDate: new Date(startDate), endDate: new Date(endDate), reason,
     status: "PENDING",
   })
+
+    await inngest.send({
+      name: "leave/pending",
+      data: {
+        leaveApplicationId: leave._id
+       
+      
+      }
+    })
   return res.json({success: true, data: leave} )
 } catch (error) {
   return res.status(500).json({error: "Failed"})
