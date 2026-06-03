@@ -1,6 +1,5 @@
 
-
-
+import "dotenv/config";
 import express from 'express';
 import cors from 'cors';
 import multer from 'multer';
@@ -8,7 +7,6 @@ import connectDb from './config/db.js';
 import { serve } from "inngest/express";
 import { inngest, functions } from "./inngest/index.js"
 
-import "dotenv/config";
 import authRouter from './routes/authRoutes.js';
 import employeeRouter from './routes/EmployeeRoutes.js';
 import profileRouter from './routes/profileRoutes.js';

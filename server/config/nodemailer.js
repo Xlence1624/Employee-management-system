@@ -2,7 +2,7 @@ import { createTransport } from "nodemailer";
 
 
 
-// Create a transporter using SMTP
+//Create transporter using SMTP
 const transporter = createTransport({
   host: "smtp-relay.brevo.com",
   port: 587,
@@ -22,5 +22,8 @@ const response = await transporter.sendMail({
 })
 return response;
 }
+console.log("SMTP_USER:", process.env.SMTP_USER);
+console.log("SMTP_PASS:", process.env.SMTP_PASS ? "Loaded" : "Missing");
+
 
 export default sendEmail;
