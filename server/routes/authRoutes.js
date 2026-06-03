@@ -1,5 +1,5 @@
 import {Router} from "express"
-import { changePassword, login, session } from "../controllers/AuthController.js";
+import { changePassword, login, session } from "../controllers/authController.js";
 import { protect } from "../middleware/auth.js";
 
 
