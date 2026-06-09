@@ -56,7 +56,7 @@ const employeeSchema = new mongoose.Schema({
 bio: {    type: String,
   default: ''},
   department: {
-type: "string",
+type: String,
 enum: DEPARTMENTS
   }
 } , { timestamps: true });

@@ -37,14 +37,15 @@ const employee = await Employee.findOne({
 }).lean();
 if(!employee) return res.status(404).json({error: "Employee not found"});
 const today = new Date();
-const [currentMonthAttendance, pendingLeaves, latestPayslip] =await Promise([
+const [currentMonthAttendance, pendingLeaves, latestPayslip] =await Promise.all([
   Attendance.countDocuments({
     employeeId: employee._id,
     date: {
        $gte: new Date(today.getFullYear(), today.getMonth(), 1),
-    $lt: new Date(today.getFullYear(), today.getMonth(), + 1, 1),
+    $lt: new Date(today.getFullYear(), today.getMonth() + 1, 1),
     }
-  }).leaveApplication.countDocuments({
+  }),
+  leaveApplication.countDocuments({
     employeeId: employee._id,
     status: "PENDING",
 
