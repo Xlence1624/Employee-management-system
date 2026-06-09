@@ -4,16 +4,32 @@ import { Link } from "react-router-dom";
 import { ArrowLeftIcon, EyeOffIcon, Loader2Icon } from "lucide-react";
 import { useState } from "react";
 import { EyeIcon } from "lucide-react";
+import { useAuth } from "../context/AuthContext";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-hot-toast";
+import api from "../api/axios.js"
 
 const LoginForm = ({ role, title, subtitle }) => {
 const [email, setEmail] = useState("");
 const [password, setPassword] = useState("");
 const [showPassword, setShowPassword] = useState(false);
 const [loading, setLoading] = useState(false);
+const {login} = useAuth();
+const navigate = useNavigate();
 const [error, setError] = useState("");
 const handleSubmit = async (e) => {
   e.preventDefault();
-  }
+  setError("");
+  setLoading(true);
+  try {
+    await login(email, password, role);
+    navigate("/dashboard");
+  } catch (error) {
+    toast.error(error.response?.data?.error || error.message || "Login failed. Please try again.");
+
+  } finally {
+    setLoading(false);
+  }}
 
 
   return (
@@ -66,7 +82,7 @@ const handleSubmit = async (e) => {
             </div>
        
           </div>
-<button className=" w-full py-3 bg-linear-to-r from-indigo-600 to-indigo-500 text-white rounded-md text-sm font-semibold hover:from-indigo-700 hover:to-indigo-600 disabled:opacity-50 transition-all duration-200 shadow-lg shadow-indigo-500/25 active:scale-[0.98] flex items-center justify-center " type="submit" disabled={loading}>
+<button className=" w-full py-3 bg-linear-to-r from-indigo-600 to-indigo-500 text-white rounded-md text-sm font-semibold hover:from-indigo-700 hover:to-indigo-600 disabled:opacity-50 transition-all duration-200 shadow-lg shadow-indigo-500/25 active:scale-[0.98] flex items-center justify-center " type="submit" disabled={loading} >
 { loading && <Loader2Icon  className="animate-spin h-4 w-4 mr-2"/>} Sign in
 </button>
 

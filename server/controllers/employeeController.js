@@ -11,10 +11,7 @@ export const getEmployees = async (req, res) => {
     const { department } = req.query;
     const where = {};
     if (department) where.department = department;
-    const employees = (await Employee.find(where))
-      .toSorted({ createdAt: -1 })
-      .populate("userId", "email role")
-      .lean();
+    const employees = await Employee.find(where).sort({ createdAt: -1 }).populate("userId", "email role").lean();
 
     const result = employees.map((emp) => ({
       ...emp,
@@ -152,8 +149,8 @@ export const deleteEmployee = async (req, res) => {
 
     employee.isDeleted = true;
     employee.employmentStatus = "INACTIVE";
-    await employeemployee.save();
-    return res.json({ sucess: true });
+    await employee.save();
+    return res.json({ success: true });
   } catch (error) {
     return res.status(500).json({ error: "Failed to delete employee" });
   }

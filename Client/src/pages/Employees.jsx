@@ -4,6 +4,8 @@ import { dummyEmployeeData, DEPARTMENTS } from "../assets/assets";
 import { CrossIcon, Plus, Search, X } from "lucide-react";
 import EmployeeCard from "../components/EmployeeCard";
 import EmployeeForm from "../components/EmployeeForm";
+import api from "../api/axios.js";
+import { toast } from "react-hot-toast";
 
 const Employees = () => {
   const [employees, setEmployees] = useState([]);
@@ -13,15 +15,15 @@ const Employees = () => {
   const [editEmployee, setEditEmployee] = useState(null);
   const [showCreateModel, setShowCreateModel] = useState(false);
   const fetchEmployees = useCallback(async () => {
-    setLoading(true);
-    setEmployees(
-      dummyEmployeeData.filter((emp) =>
-        selectedDept ? emp.department === selectedDept : emp,
-      ),
-    );
-    setTimeout(() => {
+    try {
+      const url = selectedDept ? `employees?department=${selectedDept}` : "employees";
+      const res = await api.get(url);
+      setEmployees(res.data);
+    } catch (error) {
+      console.error("Failed to fetch employees", error);
+    } finally {
       setLoading(false);
-    }, 1000);
+    }
   }, [selectedDept]);
 
   useEffect(() => {
@@ -38,7 +40,7 @@ const Employees = () => {
       {/* Header */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
         <div>
-          <h1 className="page-title sm:ml-8 sm:mt-[-5px]  lg:m-0">Employees</h1>
+          <h1 className="page-title sm:ml-8 sm:mt-1.25 lg:m-0">Employees</h1>
           <p className=" page-subtitle ">Manage your team membebrs</p>
         </div>
         <button
@@ -133,7 +135,7 @@ const Employees = () => {
             <div className="p-6">
 
     <EmployeeForm   onSuccess={() => {
-                showCreateModel(faalse);
+                setShowCreateModel(false);
                 fetchEmployees();
               }}
               onCancel={() => setShowCreateModel(false)}

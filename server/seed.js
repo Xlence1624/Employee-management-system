@@ -3,12 +3,12 @@ import connectDB from "./config/db.js";
 import User from "./models/user.js";
 import bcrypt from "bcrypt";
 
-const TemporaryPassword = "admin123";
+const TemporaryPassword = "m1624kyd";
 async function registerAdmin() {
   try {
     const ADMIN_EMAIL = process.env.ADMIN_EMAIL;
     if (!ADMIN_EMAIL) {
-      cconsole.error("Admin email not found in environment variables.");
+      console.error("Admin email not found in environment variables.");
       process.exit(1);
     }
     await connectDB();
@@ -28,7 +28,7 @@ async function registerAdmin() {
       name: "Admin",
       email: process.env.ADMIN_EMAIL,
       password: hashedPassword,
-      role: "admin",
+      role: "ADMIN",
     });
 
     console.log("Admin user created successfully with email:");

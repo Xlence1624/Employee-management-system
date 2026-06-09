@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { DEPARTMENTS } from "../assets/assets";
 import { Loader2Icon } from "lucide-react";
+import api from "../api/axios.js";
+import { toast } from "react-hot-toast";
 
 const EmployeeForm = ({ initialData, onSuccess, onCancel }) => {
   const navigate = useNavigate();
@@ -9,9 +11,29 @@ const EmployeeForm = ({ initialData, onSuccess, onCancel }) => {
   const isEditMode = !!initialData;
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setloading(true);
+    const formData = new FormData(e.currentTarget);
+    const data = Object.fromEntries(formData.entries());
+    if(isEditMode && !data.password){
+      delete data.password;
+      const pwd = formData.get("password");
+      if(!pwd){
+        formData.delete("password");
+      }
+    }
+    try{
+const url = isEditMode ? `employees/${initialData.id}` : "employees";
+const method = isEditMode ? "put" : "post";
+await api[method](url, data);
+onSuccess ? onSuccess() : navigate("/employees");
+    } catch(error){
+toast.error(error.response?.data?.error || error.message)
+    } finally{
+setloading(false);
+    }
   };
   return (
-    <form action="" className="space-y-6 max-w-3xl animate-fade-in">
+    <form action="" onSubmit={handleSubmit} className="space-y-6 max-w-3xl animate-fade-in">
       {/* personal information */}
       <div className="card p-5 sm:p-6">
         <h3 className="font-medium mb-6 pb-4 border-b border-slate-100">
@@ -129,7 +151,7 @@ const EmployeeForm = ({ initialData, onSuccess, onCancel }) => {
               Allowances
             </label>
             <input
-              name="allownaces"
+              name="allowances"
               required
               min="0"
               step="0.01"
@@ -140,7 +162,7 @@ const EmployeeForm = ({ initialData, onSuccess, onCancel }) => {
           <div>
             <label className="block mb-2">Deductions</label>
             <input
-              name="allownaces"
+              name="deductions"
               required
               min="0"
               step="0.01"
@@ -157,10 +179,10 @@ const EmployeeForm = ({ initialData, onSuccess, onCancel }) => {
                 required
                 min="0"
                 step="0.01"
-                defaultValue={initialData?.deductions || 0}
+                defaultValue={initialData?.employmentStatus || "ACTIVE"}
               />
               <select
-                name="deductions"
+                name="employmentStatus"
                 defaultValue={initialData?.employmentStatus}
               >
                 <option value="ACTIVE">Active</option>
