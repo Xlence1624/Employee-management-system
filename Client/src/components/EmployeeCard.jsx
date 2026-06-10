@@ -25,7 +25,7 @@ const EmployeeCard = ({employee, onDelete, onEdit}) => {
   {employee.firstName?.[0] || ""}{employee.lastName?.[0] || ""}
 </span>
 
-{employee.isDeleted && <span className='bg-red-500/60 font-medium text-white px-2.5 py-1 text-xs rounded'>DELETED</span>}
+{/* {employee.isDeleted && <span className='bg-red-500/60 font-medium text-white px-2.5 py-1 text-xs rounded'>DELETED</span>} */}
 </div>
 </div>
 </div>
