@@ -92,7 +92,7 @@ const Employees = () => {
               No employee found
             </p>
           ) : (
-            filtered.map((emp) => (
+            filtered.filter(emp => !emp.isDeleted).map((emp) => (
               <EmployeeCard
                 key={emp.id}
                 employee={emp}

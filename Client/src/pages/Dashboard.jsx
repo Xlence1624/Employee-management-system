@@ -1,19 +1,33 @@
 import React, { useEffect, useState } from "react";
-import { dummyAdminDashboardData, dummyEmployeeDashboardData } from "../assets/assets";
+import {
+  dummyAdminDashboardData,
+  dummyEmployeeDashboardData,
+} from "../assets/assets";
 import Loading from "../components/Loading";
 import EmployeeDashboard from "../components/EmployeeDashboard";
 import AdminDashboard from "../components/AdminDashboard";
 import api from "../api/axios.js";
 import { toast } from "react-hot-toast";
 
-
 const Dashboard = () => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-  setData(dummyAdminDashboardData);
-  setLoading(false);
+    const fetchDashboard = async () => {
+      try {
+        const response = await api.get("/dashboard");
+        setData(response.data);
+      } catch (error) {
+        console.error("Dashboard fetch error:", error);
+        toast.error("Failed to load dashboard data");
+          setData(dummyAdminDashboardData); 
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchDashboard();
   }, []);
 
   if (loading) return <Loading />;
@@ -26,14 +40,13 @@ const Dashboard = () => {
   }
 
   if (data.role === "ADMIN") {
-    return <AdminDashboard data={data}/>
+    return <AdminDashboard data={data} />;
   } else {
-    return (<div>
-      <EmployeeDashboard data={data} />
-   
-
-   
-    </div>);
+    return (
+      <div>
+        <EmployeeDashboard data={data} />
+      </div>
+    );
   }
 };
 
