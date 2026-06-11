@@ -2,6 +2,8 @@ import { Loader2, Plus } from 'lucide-react';
 import React from 'react'
 import { useState } from 'react';
 import { X } from 'lucide-react';
+import api from '../../api/axios';
+import { toast } from 'react-hot-toast';
 
 
 const GeneratePayslipForm = ({employee, onsuccess
@@ -17,7 +19,19 @@ const GeneratePayslipForm = ({employee, onsuccess
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
+    const formData = new FormData(e.currentTarget);
+    const data = Object.fromEntries(formData.entries());
+    try{
+      await api.post("/payslips", data);
+      onsuccess();
+      setIsOpen(false);
+    } catch (error) {
+      toast.error(error?.response?.data?.error || "Failed to generate payslip");
+    } finally {
+      setIsLoading(false);
     }
+  };
   return (
     <div className="fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center z-50 p-4" >
 <div className="card max-w-lg p-6 w-full animate-slide-up">
@@ -27,7 +41,7 @@ const GeneratePayslipForm = ({employee, onsuccess
     <X className="w-4 h-4" size={20} />
   </button>
 </div>
-<form action="" className="space-y-4" onsubmit={handleSubmit}>
+<form action="" className="space-y-4" onSubmit={handleSubmit}>
 {/* Select employee */}
 <div >
 
