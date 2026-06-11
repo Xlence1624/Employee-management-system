@@ -59,10 +59,14 @@ try {
   if(isAdmin){
     const status = req.query.status;
     const where = status ? {status} : {};
-    const leaves = (await leaveApplication.find(where).populate("employeeId")).toSorted({createdAt: -1})
+    //const leaves = (await leaveApplication.find(where).populate("employeeId")).toSorted({createdAt: -1})
+    const leaves = await leaveApplication.find(where)
+  .populate("employeeId")
+  .sort({ createdAt: -1 });
+
      const data = leaves.map( (l)=>{
       const obj = l.toObject();
-      return {...obj, id: obj._id.toString(), employeee: obj.employeeId,
+      return {...obj, id: obj._id.toString(), employee: obj.employeeId,
         employeeId: obj.employeeId?._id?.toString(),
       }
 

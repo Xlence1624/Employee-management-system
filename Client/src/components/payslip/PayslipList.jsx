@@ -34,8 +34,7 @@ const PayslipList = ({payslips, isAdmin}) => {
                 
                    return (
                   <tr key={payslip._id || payslip.id}>
-                    {isAdmin && (   <td className=" text-slate-900">{payslip.employee?.firstName}
-                        {payslip.employee?.lastName}
+                    {isAdmin && (   <td className=" text-slate-900">{payslip.employee?.firstName}  {payslip.employee?.lastName}
                        </td>)}
                     
                       <td className="text-slate-500">

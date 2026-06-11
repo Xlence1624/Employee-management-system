@@ -1,6 +1,9 @@
 import { CalendarDays, FileText, Loader2, SendIcon, X } from "lucide-react";
 import React from "react";
 import { useState } from "react";
+import api from "../../api/axios";
+import { toast } from "react-hot-toast";
+import { useAuth } from "../../context/AuthContext";                  
 
 const ApplyLeaveModal = ({ open, onClose, onSuccess }) => {
   const [loading, setLoading] = useState(false);
@@ -12,6 +15,18 @@ const ApplyLeaveModal = ({ open, onClose, onSuccess }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
+    const formData = new FormData(e.currentTarget);
+    const data = Object.fromEntries(formData.entries());
+    try{
+await api.post("/leave", data)
+onSuccess();
+onClose();
+toast.success("Leave application submitted successfully")
+    } catch(error){
+      toast.error("Failed to submit leave application")
+    } finally {
+      setLoading(false);
+    }
   };
 
   if (!open) return null;
@@ -48,7 +63,7 @@ const ApplyLeaveModal = ({ open, onClose, onSuccess }) => {
           </div>
 
           {/* Form */}
-          <form action="" className="p-6 space-y-5 w-full">
+          <form action=""  onSubmit={handleSubmit} className="p-6 space-y-5 w-full">
             {/* Leave type */}
             <div className="">
               <label
@@ -127,7 +142,7 @@ const ApplyLeaveModal = ({ open, onClose, onSuccess }) => {
 
             {/* buttons */}
 <div className="flex gap-3 pt-2">
-    <button type="button" className="btn-secondary flex-1" onclick={onClose}>
+    <button type="button" className="btn-secondary flex-1" onClick={onClose}>
       Cancel
     </button>
 
