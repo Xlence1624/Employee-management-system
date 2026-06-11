@@ -6,6 +6,14 @@ import Employee from "../models/Employee.js";
 
 
 
+const inngest = new Inngest({
+  id: "employee-management-system",   // must be unique across your app
+  name: "Employee Management System", // optional, for readability
+});
+
+
+
+
 // POST /api/attendance
 export const clockInOut = async (req, res)=> {
 try {
