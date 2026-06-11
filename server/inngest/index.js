@@ -16,7 +16,7 @@ export const inngest = new Inngest({ id: "EMS" });
 
 //Auto check out for employee
 const autoCheckOut = inngest.createFunction(
-  { id: "auto-check-out", triggers: [ {event: "employee/check-out"}]},
+  { id: "auto-check-out", triggers: [ {event: "employee/checkout"}]},
  
   async ({ event, step }) => {
    const {employeeId, attendanceId} = event.data;
@@ -179,6 +179,7 @@ const attendanceReminderCron = inngest.createFunction(
           }
         )
       })
+      await Promise.all(emailPromises)
       return {totalActive: activeEmployees.length, onLeave: onLeaveIds.length, checkedIn: checkedInIds.length, absent: absentEmployees.length}
     }
 
