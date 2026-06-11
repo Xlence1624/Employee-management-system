@@ -1,6 +1,10 @@
 //clock in and out for employee
 
 import { Inngest } from "inngest";
+import Attendance from "../models/Attendance.js";
+import Employee from "../models/Employee.js";
+
+
 
 // POST /api/attendance
 export const clockInOut = async (req, res)=> {
@@ -13,7 +17,7 @@ try {
   }
   const today = new Date();
   today.setHours(0,0,0,0);
-  const existing = await getAttendance.findOne({employeeId: employee._id,
+  const existing = await Attendance.findOne({employeeId: employee._id,
     date: today,
   })
   const now = new Date();
@@ -47,10 +51,10 @@ try {
 const workingHours = parseFloat(diffHours.toFixed(2))
     let dayType = "Half Day";
     if (workingHours >= 8) dayType = "Full Day"
-     else if (workingHours >= 6) dayType = "quarter Day"
+     else if (workingHours >= 6) dayType = "Three Quarter Day"
 
-    else if (workingHours >= 4) dayType = "Three quarter Day"
-    else dayType = "short Day"
+    else if (workingHours >= 4) dayType = "Quarter Day"
+    else dayType = "Half Day"
 
     existing.workingHours = workingHours;
     existing.dayType = dayType;
